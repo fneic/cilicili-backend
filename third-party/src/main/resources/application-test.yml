@@ -1,0 +1,5 @@
+redis:
+  database: 1
+  host: 118.89.68.42
+  port: 6379
+  password: 3FKrphvDRZoAPuqqq5gh

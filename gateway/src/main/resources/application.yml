@@ -1,0 +1,31 @@
+server:
+  port: 8880
+spring:
+  cloud:
+    gateway:
+      routes:
+        ##
+        - id: auth2-router
+          uri: lb://cilicili-auth2
+          predicates:
+            - Path=/api/auth2/**
+          filters:
+            - RewritePath=/api/?(?<segment>.*), /$\{segment}
+        - id: third-part-router
+          uri: lb://cilicili-third
+          predicates:
+            - Path=/api/third/**
+          filters:
+            - RewritePath=/api/?(?<segment>.*), /$\{segment}
+        - id: media-router
+          uri: lb://cilicili-media
+          predicates:
+            - Path=/api/media/**
+          filters:
+            - RewritePath=/api/?(?<segment>.*), /$\{segment}
+        - id: video-router
+          uri: lb://cilicili-video-management
+          predicates:
+            - Path=/api/video/**
+          filters:
+            - RewritePath=/api/?(?<segment>.*), /$\{segment}

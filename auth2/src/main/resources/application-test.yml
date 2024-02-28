@@ -1,0 +1,11 @@
+redis:
+  database: 1
+  host: 118.89.68.42
+  port: 6379
+  password: 3FKrphvDRZoAPuqqq5gh
+mysql:
+  ip: 118.89.68.42
+  port: 3306
+  db: cili_auth
+  username: cili_auth
+  password: eS2sNpb5fNXPdrSc

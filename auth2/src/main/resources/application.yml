@@ -1,0 +1,33 @@
+server:
+  port: 8882
+  servlet:
+    context-path: /auth2
+  address: 0.0.0.0
+spring:
+  profiles:
+    active: test
+  # 支持 swagger3
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  redis:
+    database: ${redis.database}
+    host: ${redis.host}
+    port: ${redis.port}
+    password: ${redis.password}
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${mysql.ip}:${mysql.port}/${mysql.db}?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    username: ${mysql.username}
+    password: ${mysql.password}
+    hikari:
+      max-lifetime: 30000
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      logic-delete-field: isDelete # 全局逻辑删除的实体字段名
+      logic-delete-value: 1 # 逻辑已删除值（默认为 1）
+      logic-not-delete-value: 0 # 逻辑未删除值（默认为 0）

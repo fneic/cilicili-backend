@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cilicili.auth2.mapper.UserMapper">
+
+    <resultMap id="BaseResultMap" type="com.cilicili.auth2.model.entity.User">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="nickName" column="nick_name" jdbcType="VARCHAR"/>
+            <result property="account" column="account" jdbcType="VARCHAR"/>
+            <result property="password" column="password" jdbcType="VARCHAR"/>
+            <result property="avatar" column="avatar" jdbcType="VARCHAR"/>
+            <result property="phone" column="phone" jdbcType="VARCHAR"/>
+            <result property="email" column="email" jdbcType="VARCHAR"/>
+            <result property="sign" column="sign" jdbcType="VARCHAR"/>
+            <result property="birth" column="birth" jdbcType="TIMESTAMP"/>
+            <result property="openid" column="openid" jdbcType="VARCHAR"/>
+            <result property="gender" column="gender" jdbcType="TINYINT"/>
+            <result property="role" column="role" jdbcType="TINYINT"/>
+            <result property="status" column="status" jdbcType="TINYINT"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="isDelete" column="is_delete" jdbcType="TINYINT"/>
+            <result property="accountInfoId" column="account_info_id" jdbcType="BIGINT"/>
+            <result property="expId" column="exp_id" jdbcType="BIGINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,nick_name,account,
+        password,avatar,phone,
+        email,sign,birth,
+        openid,gender,role,
+        status,create_time,update_time,
+        is_delete,account_info_id,exp_id
+    </sql>
+</mapper>

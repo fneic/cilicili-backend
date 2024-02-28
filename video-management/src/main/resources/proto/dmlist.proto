@@ -1,0 +1,16 @@
+//使用 proto3 语法 ,未指定则使用proto2
+syntax = "proto3";
+//生成 proto 文件所在包路径
+package com.cili.video.model.proto;
+
+//生成 proto 文件所在包路径
+option java_package = "com.cili.video.model.proto";
+
+//生成 proto 文件名
+option java_outer_classname="DmListProto";
+
+import "Dm.proto" ;
+
+message DmList {
+  repeated Dm dmList = 1;
+}

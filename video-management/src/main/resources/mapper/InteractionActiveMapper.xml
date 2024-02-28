@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cili.video.mapper.InteractionActiveMapper">
+
+    <resultMap id="BaseResultMap" type="com.cili.video.model.entity.InteractionActive">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="videoId" column="video_id" jdbcType="BIGINT"/>
+            <result property="userId" column="user_id" jdbcType="BIGINT"/>
+            <result property="isLike" column="is_like" jdbcType="TINYINT"/>
+            <result property="isCoin" column="is_coin" jdbcType="TINYINT"/>
+            <result property="isCollect" column="is_collect" jdbcType="TINYINT"/>
+            <result property="isPlay" column="is_play" jdbcType="TINYINT"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,video_id,user_id,is_play,
+        is_like,is_coin,is_collect,
+        create_time,update_time
+    </sql>
+</mapper>

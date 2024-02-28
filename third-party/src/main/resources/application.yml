@@ -1,0 +1,16 @@
+server:
+  servlet:
+    context-path: /third
+  port: 8883
+spring:
+  # 支持 swagger3
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  profiles:
+    active: test
+  redis:
+    database: ${redis.database}
+    host: ${redis.host}
+    port: ${redis.port}
+    password: ${redis.password}

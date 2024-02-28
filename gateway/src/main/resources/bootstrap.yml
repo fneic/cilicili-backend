@@ -1,0 +1,8 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 118.89.68.42:8848
+        namespace: public
+  application:
+    name: cilicili-gateway

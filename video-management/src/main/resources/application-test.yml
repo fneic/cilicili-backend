@@ -1,0 +1,13 @@
+redis:
+  database: 1
+  host: 118.89.68.42
+  port: 6379
+  password: 3FKrphvDRZoAPuqqq5gh
+mysql:
+  ip: 118.89.68.42
+  port: 3306
+  db: video
+  username: cili_video
+  password: 3Cf5zRHsd8FrepZN
+server:
+  port: 8884

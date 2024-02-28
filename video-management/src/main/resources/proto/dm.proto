@@ -1,0 +1,21 @@
+//使用 proto3 语法 ,未指定则使用proto2
+syntax = "proto3";
+//生成 proto 文件所在包路径
+package com.cili.video.model.proto;
+
+//生成 proto 文件所在包路径
+option java_package = "com.cili.video.model.proto";
+
+//生成 proto 文件名
+option java_outer_classname="DmProto";
+
+message Dm {
+    sint64 id = 1;
+    sint64 userId = 2;
+    sint64 videoId = 3;
+    string content = 4;
+    string color = 5;
+    sint32 fontSize = 6;
+    sint32 stamp = 7;
+    string createTime = 8;
+}
