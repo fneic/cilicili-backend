@@ -311,6 +311,24 @@ public class CommonRedisTemplate {
         return l > 0;
     }
 
+    public Boolean addZSet(String key,String value,Double score,long time, TimeUnit timeUnit){
+        redisTemplate.opsForZSet().add(key,value,score);
+        redisTemplate.expire(key,time,timeUnit);
+        return true;
+    }
+
+    public <T> List<T> getRangeInZSet(String key,long start,long end,Class<T> clazz){
+        Set<String> ranges = redisTemplate.opsForZSet().range(key, start, end);
+        if(ranges == null){
+            return null;
+        }
+        List<T> dms = new ArrayList<>();
+        for (String dm : ranges) {
+            dms.add(JsonUtils.toObject(dm,clazz));
+        }
+        return dms;
+    }
+
 
 
 

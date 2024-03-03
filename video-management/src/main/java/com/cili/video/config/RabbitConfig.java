@@ -42,4 +42,16 @@ public class RabbitConfig {
         return BindingBuilder.bind(queue2).to(directExchange).with("publish");
     }
 
+    //创建消息队列
+    @Bean
+    public Queue queueDm(){
+        return new Queue("video.dm.queue");
+    }
+
+    @Bean
+    public Binding bindingBuilder3(DirectExchange directExchange, Queue queueDm){
+
+        return BindingBuilder.bind(queueDm).to(directExchange).with("dm");
+    }
+
 }

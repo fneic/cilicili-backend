@@ -15,7 +15,17 @@ public interface DmService extends IService<Dm> {
      * 获取弹幕片段
      *
      * @param vid
+     * @param timeStamp
      * @return
      */
-    DmListProto.DmList getDmSeg(Long vid);
+    DmListProto.DmList getDmSeg(Long vid, Integer timeStamp);
+
+    /**
+     * 保存弹幕
+     * @param dm
+     * @return
+     */
+    boolean saveDm(Dm dm);
+
+    boolean saveDmToRedis(Dm dm);
 }

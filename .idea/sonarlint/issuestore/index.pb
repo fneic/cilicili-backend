@@ -431,3 +431,9 @@ Q.idea/sonarlint/securityhotspotstore/3/1/31ffcc28b9c621260d5826225b9b126a73e517
 Q.idea/sonarlint/securityhotspotstore/a/5/a5cc2925ca8258af241be7e5b0381edf30266302,3\0\30205a209c6ce77c4cfc19a09e6f57c588b7fb88
 x
 Hvideo-management/src/main/java/com/cili/video/remote/AuthServiceApi.java,f\6\f6f89d625dfc8ccf03ed20eceafd42e6d6a56b2e
+y
+Ivideo-management/src/main/java/com/cili/video/config/WebSocketConfig.java,d\a\daaf16a4108f4b81ea94c45ffb05466eb4226540
+~
+Nvideo-management/src/main/java/com/cili/video/websocket/DmWebSocketServer.java,1\2\1226d85ae8b6cd54c42f228d2264dc74d7855d31
+p
+@video-management/src/main/java/com/cili/video/websocket/Msg.java,3\0\30b4a308bad9c5a3ab4f07636aab1af55eb4af88

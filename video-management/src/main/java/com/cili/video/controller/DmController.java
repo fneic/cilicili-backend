@@ -24,14 +24,11 @@ public class DmController {
 
     @GetMapping("/seg")
     @NoLogin
-    public void getDms(@RequestParam("vid") Long vid, HttpServletResponse response) throws IOException {
-        DmListProto.DmList dmSeg = dmService.getDmSeg(vid);
+    public void getDms(@RequestParam("vid") Long vid,@RequestParam("timeStamp")Integer timeStamp, HttpServletResponse response) throws IOException {
+        DmListProto.DmList dmSeg = dmService.getDmSeg(vid,timeStamp);
         response.setContentType("application/octet-stream");
         response.setHeader("Content-Disposition","inline");
         ServletOutputStream outputStream = response.getOutputStream();
         dmSeg.writeTo(outputStream);
     }
-
-//    @PostMapping("/post")
-//    public void postDm()
 }
