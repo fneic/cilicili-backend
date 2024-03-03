@@ -8,6 +8,7 @@ import com.cili.video.model.entity.VideoReviewInfo;
 import com.cili.video.model.vo.VideoPlayResp;
 import com.cili.video.service.*;
 import com.cili.video.service.adapter.VideoAdapter;
+import com.cilicili.common.common.UserContextHold;
 import com.cilicili.common.exception.ThrowUtils;
 import com.cilicili.common.resp.StatusCode;
 import org.springframework.stereotype.Service;
@@ -58,11 +59,15 @@ public class VideoServiceImpl implements VideoService {
         videoBaseInfo.setMid(videoMediaInfo.getId());
         boolean save = videoBaseInfoService.save(videoBaseInfo);
         ThrowUtils.throwIf(!save,StatusCode.OPERATION_FAILED);
-        //todo 异步推送动态到粉丝
+        //异步推送动态到粉丝
+        Long uid = UserContextHold.getCurrentUser().getId();
+        Long videoBaseInfoId = videoBaseInfo.getId();
+        String message = uid +"-" + videoBaseInfoId;
+        mqService.sendMessage("video.exchange",message,"publish");
         //添加审核信息
-        VideoReviewInfo videoReviewInfo = VideoReviewInfo.builder().videoId(videoBaseInfo.getId()).build();
+        VideoReviewInfo videoReviewInfo = VideoReviewInfo.builder().videoId(videoBaseInfoId).build();
         boolean save2 = videoReviewInfoService.save(videoReviewInfo);
-        videoInteractionService.initial(videoBaseInfo.getId());
+        videoInteractionService.initial(videoBaseInfoId);
         ThrowUtils.throwIf(!save2,StatusCode.OPERATION_FAILED);
     }
 

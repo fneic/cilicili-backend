@@ -8,6 +8,7 @@ import com.cilicili.common.utils.ParamsCheck;
 import com.cilicili.common.utils.ResultUtils;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
+import java.util.List;
 
 
 /**
@@ -63,5 +64,14 @@ public class RelationController {
     public BaseResponse<UpList> follows(@RequestBody PageRequest pageRequest){
         UpList upList = relationService.listOfFollows(pageRequest);
         return ResultUtils.success(upList);
+    }
+
+    /**
+     * 获取粉丝列表
+     */
+    @GetMapping("/followings")
+    public BaseResponse<List<Long>> getFollowings(Long uid){
+        List<Long> followings = relationService.getFollowings(uid);
+        return ResultUtils.success(followings);
     }
 }

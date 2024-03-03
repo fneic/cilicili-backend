@@ -300,6 +300,19 @@ public class CommonRedisTemplate {
         }
     }
 
+    /**
+     * 往列表中插入元素，列表不存在则创建
+     * @param key
+     * @param value
+     * @return
+     */
+    public Boolean pushList(String key,String value){
+        Long l = redisTemplate.opsForList().leftPush(key, value);
+        return l > 0;
+    }
+
+
+
 
     public <T> Set<T> getAndRemoveSet(String key,Class<T> clazz){
         List list = redisTemplate.execute(getAndRemoveListScript(), Collections.singletonList(key));

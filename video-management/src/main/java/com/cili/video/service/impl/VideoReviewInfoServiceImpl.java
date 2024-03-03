@@ -15,6 +15,8 @@ import org.springframework.stereotype.Service;
 public class VideoReviewInfoServiceImpl extends ServiceImpl<VideoReviewInfoMapper, VideoReviewInfo>
     implements VideoReviewInfoService {
 
+
+
 }
 
 

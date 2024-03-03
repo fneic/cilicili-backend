@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 public class RabbitConfig {
     //新建一个扇形交换机
     @Bean
-    public DirectExchange fanoutExchange(){
+    public DirectExchange directExchange(){
         return new DirectExchange("video.exchange");
     }
 
@@ -23,9 +23,23 @@ public class RabbitConfig {
 
 	//将消息队列与交换机绑定
     @Bean
-    public Binding bindingBuilder(DirectExchange directExchange, Queue queue1){
+    public Binding bindingBuilder1(DirectExchange directExchange1, Queue queue1){
 
-        return BindingBuilder.bind(queue1).to(directExchange).with("play");
+        return BindingBuilder.bind(queue1).to(directExchange1).with("play");
+    }
+
+
+    //创建消息队列
+    @Bean
+    public Queue queue2(){
+        return new Queue("video.publish.queue");
+    }
+
+    //将消息队列与交换机绑定
+    @Bean
+    public Binding bindingBuilder2(DirectExchange directExchange, Queue queue2){
+
+        return BindingBuilder.bind(queue2).to(directExchange).with("publish");
     }
 
 }

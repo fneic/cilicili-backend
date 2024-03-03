@@ -5,6 +5,8 @@ import com.cilicili.auth2.model.entity.Relation;
 import com.cilicili.auth2.model.vo.UpList;
 import com.cilicili.common.model.PageRequest;
 
+import java.util.List;
+
 /**
 * @author Zhou JunJie
 * @description 针对表【relation(用户关系表)】的数据库操作Service
@@ -38,4 +40,6 @@ public interface RelationService extends IService<Relation> {
      * @return
      */
     UpList listOfFollows(PageRequest pageRequest);
+
+    List<Long> getFollowings(Long uid);
 }

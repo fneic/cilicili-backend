@@ -76,6 +76,14 @@ public class RelationServiceImpl extends ServiceImpl<RelationMapper, Relation>
         return new UpList(upList, relationPage.getTotal());
     }
 
+    @Override
+    public List<Long> getFollowings(Long uid) {
+        LambdaQueryWrapper<Relation> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(Relation::getFollower,uid);
+        List<Relation> list = list(wrapper);
+        return list.stream().map(Relation::getFollowing).collect(Collectors.toList());
+    }
+
     private Relation getRelation(Long fid){
         LambdaQueryWrapper<Relation> wrapper = new LambdaQueryWrapper<>();
         SafeUser currentUser = UserContextHold.getCurrentUser();

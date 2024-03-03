@@ -318,8 +318,6 @@ x
 Hvideo-management/src/main/java/com/cili/video/config/RedissonConfig.java,d\6\d6ad1e2e5b0ade6e9a155b4e1f2a2aa55fe6a22b
 v
 Fvideo-management/src/main/java/com/cili/video/config/RabbitConfig.java,7\8\787e80c57f36a0dc0d50cc2bcbb61de499dc735e
-s
-Cvideo-management/src/main/java/com/cili/video/common/MqService.java,1\e\1e26131fee8dbd2c7166a94ece5c91c749a784c0
 w
 Gvideo-management/src/main/java/com/cili/video/mq/VideoPlayConsumer.java,8\5\85a1c45b5531afadd84e1a7bfd0104ae8711e375
 o
@@ -431,3 +429,5 @@ Q.idea/sonarlint/securityhotspotstore/3/1/31ffcc28b9c621260d5826225b9b126a73e517
 +media/.mvn/wrapper/maven-wrapper.properties,2\b\2b2ade22d543ddbd8b5000aa4fe87a5fe3e72037
 Å
 Q.idea/sonarlint/securityhotspotstore/a/5/a5cc2925ca8258af241be7e5b0381edf30266302,3\0\30205a209c6ce77c4cfc19a09e6f57c588b7fb88
+x
+Hvideo-management/src/main/java/com/cili/video/remote/AuthServiceApi.java,f\6\f6f89d625dfc8ccf03ed20eceafd42e6d6a56b2e
