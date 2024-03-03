@@ -437,3 +437,9 @@ Ivideo-management/src/main/java/com/cili/video/config/WebSocketConfig.java,d\a\
 Nvideo-management/src/main/java/com/cili/video/websocket/DmWebSocketServer.java,1\2\1226d85ae8b6cd54c42f228d2264dc74d7855d31
 p
 @video-management/src/main/java/com/cili/video/websocket/Msg.java,3\0\30b4a308bad9c5a3ab4f07636aab1af55eb4af88
+}
+Mvideo-management/src/main/java/com/cili/video/config/ElasticSearchConfig.java,8\a\8abf37fcdba46a78bc61aa05feb3abaa53275033
+}
+Mvideo-management/src/main/java/com/cili/video/repository/VideoRepository.java,f\d\fd4231c3b6a825c8e76836c428f4170b8d513cf9
+t
+Dvideo-management/src/main/java/com/cili/video/es/VideoEsService.java,1\2\12e6ac2e5d838f32ea11436b64c7f333ae9b80ca

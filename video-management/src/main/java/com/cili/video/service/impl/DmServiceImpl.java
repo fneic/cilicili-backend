@@ -37,7 +37,7 @@ public class DmServiceImpl extends ServiceImpl<DmMapper, Dm>
         List<Dm> dmList = commonRedisTemplate.getRangeInZSet(key, start, end, Dm.class);
         if(dmList == null){
             LambdaQueryWrapper<Dm> dmLambdaQueryWrapper = new LambdaQueryWrapper<>();
-            dmLambdaQueryWrapper.eq(Dm::getVideoId,vid);
+            dmLambdaQueryWrapper.eq(Dm::getVideoId,vid).between(Dm::getStamp,start,end);
             dmList = list(dmLambdaQueryWrapper);
         }
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM-dd hh:mm");

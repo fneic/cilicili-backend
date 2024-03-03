@@ -357,6 +357,10 @@ public class CommonRedisTemplate {
         return new DefaultRedisScript<>(script, List.class);
     }
 
+    public Set<String> getSet(String key){
+        return redisTemplate.opsForSet().members(key);
+    }
+
     public <T> Set<T> getSet(String key,Class<T> clazz){
         try {
             Set<String> members = redisTemplate.opsForSet().members(key);

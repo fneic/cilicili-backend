@@ -39,6 +39,10 @@ public class VideoInteractionSync {
 
     @Scheduled(fixedDelay = 1,initialDelay = 1,timeUnit = TimeUnit.MINUTES)
     public void syncVideoInteractionRecordTask(){
+        /**
+         * 查询到同步任务后必须先删除，并且使用lua脚本保证原子性
+         * 执行任务后再删除存在问题：很可能会删除新添加的同步任务
+         */
         Set<Long> keys = commonRedisTemplate.getAndRemoveSet(VIDEO_INTERACTION_RECORD_SYNC, Long.class);
         if(keys.isEmpty()){
             return;
@@ -50,7 +54,9 @@ public class VideoInteractionSync {
         }
         boolean updateBatch = videoInteractionService.updateBatchById(taskItems);
         if(!updateBatch){
-            //如果同步失败，将数据还原
+            /** 如果同步失败，将数据还原
+             *
+             */
             Object[] array = keys.toArray();
             commonRedisTemplate.addAllSet(VIDEO_INTERACTION_RECORD_SYNC,array);
             log.error("同步失败[task:{}，sum:{}]","视频点赞数等同步",keys.size());
@@ -72,7 +78,7 @@ public class VideoInteractionSync {
             InteractionActive interactionActive = InteractionAdapter.interActive2PO(interActive, Long.parseLong(props[1]), Long.parseLong(props[0]));
             taskItems.add(interactionActive);
         }
-        boolean savedBatch = interactionActiveService.saveBatch(taskItems);
+        boolean savedBatch = interactionActiveService.updateBatchById(taskItems);
         if(!savedBatch){
             //如果同步失败，将数据还原
             Object[] array = keys.toArray();
