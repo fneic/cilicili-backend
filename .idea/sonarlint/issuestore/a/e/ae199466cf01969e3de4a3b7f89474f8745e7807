@@ -1,12 +1,13 @@
 
-e
-java:S2259İ"BA "NullPointerException" could be thrown; "user" is nullable here.(§îà’ıÿÿÿÿ8ŠÖÓèÈ1
 P
-java:S1135´"2Complete the task associated to this TODO comment.(»¡—‹8şÕ¾éÈ1
+java:S1135³"2Complete the task associated to this TODO comment.(»¡—‹8‹ŸÓÑà1
 U
-java:S1135º"2Complete the task associated to this TODO comment.(Åñ¿Åşÿÿÿÿ8âûÓèÈ1
-^	java:S125Ù"<This block of commented-out lines of code should be removed.(Š«ºâÿÿÿÿÿ8œÖÓèÈ1
-P
-java:S1135Ø"2Complete the task associated to this TODO comment.(åéëÈ8œÖÓèÈ1
-P
-java:S1135ö"2Complete the task associated to this TODO comment.(éŠ‹8ÖÓèÈ1
+java:S1135¹"2Complete the task associated to this TODO comment.(Åñ¿Åşÿÿÿÿ8ŒŸÓÑà1
+I
+java:S1481å"&Remove this unused "n" local variable.(·’ùıÿÿÿÿ8ÅĞÖÑà1
+]
+java:S1128";Remove this unused import 'cn.hutool.core.util.RandomUtil'.(·ÓÄ÷ûÿÿÿÿ8ÅĞÖÑà1
+a
+java:S1128"?Remove this unused import 'cn.hutool.crypto.digest.DigestUtil'.(–©Ùûÿÿÿÿ8ÆĞÖÑà1
+g
+java:S1128"ERemove this unused import 'com.cilicili.redisutil.common.CodeManage'.(§Ïüñøÿÿÿÿ8ÆĞÖÑà1

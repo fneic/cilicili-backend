@@ -27,6 +27,8 @@ spring:
     virtual-host: / # 虚拟主机
     username: admin # 用户名
     password: 123456 # 密码
+    publisher-returns: true #消息到达队列的手动确认
+    publisher-confirm-type: correlated #消息到达交换机的回调
 elasticSearch:
   url: 118.89.68.42
 mybatis-plus:

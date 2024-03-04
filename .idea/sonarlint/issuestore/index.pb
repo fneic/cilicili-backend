@@ -443,3 +443,15 @@ Mvideo-management/src/main/java/com/cili/video/config/ElasticSearchConfig.java,
 Mvideo-management/src/main/java/com/cili/video/repository/VideoRepository.java,f\d\fd4231c3b6a825c8e76836c428f4170b8d513cf9
 t
 Dvideo-management/src/main/java/com/cili/video/es/VideoEsService.java,1\2\12e6ac2e5d838f32ea11436b64c7f333ae9b80ca
+w
+Gauth2/src/main/java/com/cilicili/auth2/service/login/LoginStrategy.java,6\f\6f805af2f461112d5504ec175108e2b929669527
+~
+Nauth2/src/main/java/com/cilicili/auth2/service/login/AccountLoginStrategy.java,5\7\575032ec8fa74c4c970972c828bb937d67700232
+|
+Lauth2/src/main/java/com/cilicili/auth2/service/login/PhoneLoginStrategy.java,a\b\abaed54b37472cb200659c0f8bca11c90f8ab067
+s
+Cauth2/src/main/java/com/cilicili/auth2/service/login/LoginYype.java,7\f\7f0980460b4c6b43613c358c70a597fe01a0afac
+s
+Cauth2/src/main/java/com/cilicili/auth2/service/login/LoginType.java,9\2\92dfa86fb6704f3b3514ee99d0bb3e1bac75a290
+~
+Nauth2/src/main/java/com/cilicili/auth2/service/login/LoginStrategyBuilder.java,f\a\fab18de7a43cf663690b99f1fb3311fab180bd57

@@ -80,6 +80,13 @@ public class VideoPlayConsumer {
         }
     }
 
+    /**
+     * 将弹幕转发到各个客户端
+     * @param message
+     * @param channel
+     * @param deliveryTag
+     * @throws IOException
+     */
     @RabbitListener(queues = {"video.dm.queue"}, ackMode = "MANUAL")
     public void pushDm2User(String message, Channel channel,@Header(AmqpHeaders.DELIVERY_TAG) long deliveryTag) throws IOException {
         Map map = JsonUtils.toObject(message, Map.class);

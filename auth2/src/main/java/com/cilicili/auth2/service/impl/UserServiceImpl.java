@@ -14,6 +14,9 @@ import com.cilicili.auth2.model.vo.*;
 import com.cilicili.auth2.service.AccountInfoService;
 import com.cilicili.auth2.service.ExpService;
 import com.cilicili.auth2.service.RelationService;
+import com.cilicili.auth2.service.login.LoginStrategy;
+import com.cilicili.auth2.service.login.LoginStrategyBuilder;
+import com.cilicili.auth2.service.login.LoginType;
 import com.cilicili.common.common.UserContextHold;
 import com.cilicili.common.exception.BusinessException;
 import com.cilicili.common.model.SafeUser;
@@ -51,8 +54,6 @@ public class UserServiceImpl implements UserService {
     private CommonRedisTemplate commonRedisTemplate;
 
     @Resource
-    private CodeManage codeManage;
-    @Resource
     private AccountInfoService accountInfoService;
 
     @Resource
@@ -62,6 +63,9 @@ public class UserServiceImpl implements UserService {
     @Lazy
     private RelationService relationService;
 
+    @Resource
+    private LoginStrategyBuilder loginStrategyBuilder;
+
 
     @Override
     @Transactional
@@ -69,20 +73,15 @@ public class UserServiceImpl implements UserService {
         Integer type = userLoginDto.getType();
         ParamsCheck.isNoNull(type);
         User user = null;
-        if (type.equals(LOGIN_OF_PHONE)) {
-            user = loginByPhone(userLoginDto.getPhone(), userLoginDto.getMsgCode());
-        } else if (type.equals(LOGIN_OF_ACCOUNT)) {
-            user = loginByAccount(userLoginDto.getAccount(), userLoginDto.getPassword());
-        } else {
-            ThrowUtils.throwException(StatusCode.PARAMS_ERROR);
-        }
-
+        //策略模式
+        LoginStrategy loginStrategy = loginStrategyBuilder.getLoginStrategy(LoginType.codeToType(type));
+        user = loginStrategy.login(userLoginDto);
         //账户状态判断
         checkUser(user);
         SafeUser safeUser = UserAdapter.convertToSafeUser(user);
         //将用户信息保存到redis
         saveRedisUserInfo(safeUser);
-//        //双token机制
+        //双token机制
         return getTokens(safeUser);
     }
 
@@ -211,58 +210,6 @@ public class UserServiceImpl implements UserService {
         commonRedisTemplate.updateHashAll(key,userInfo,USER_STATE_REDIS_EXPIRE, TimeUnit.DAYS);
     }
 
-    private User loginByAccount(String account, String password) {
-        ParamsCheck.isNoNull(account, password);
-        // TODO: 2023/11/28 图形验证码待完善
-//        CodeManage.checkImgCode(account, imgCode);
-        User user = userDao.getUserByAccount(account);
-        //账号不存在
-        ThrowUtils.throwIf(Objects.isNull(user), StatusCode.LOGIN_FAILED, "账号或密码错误");
-        String realPassword = user.getPassword();
-        String encryptPassword = encryptPassword(password,account);
-        //密码错误
-        ThrowUtils.throwIf(!Objects.equals(realPassword, encryptPassword), StatusCode.LOGIN_FAILED, "账号或密码错误");
-        return user;
-    }
-
-    private User loginByPhone(String phone, Integer msgCode) {
-        ParamsCheck.isNoNull(phone, msgCode);
-        //手机格式校验
-        ParamsCheck.checkPhoneNumber(phone);
-        //验证码校验
-        codeManage.checkMsgCode(phone, msgCode);
-        User user = userDao.getUserByPhone(phone);
-        //用户不存在，走注册
-        if(user == null){
-           user =  register(phone);
-        }
-        return user;
-    }
-
-
-    private User register(String phone) {
-        User user = new User();
-        user.setPhone(phone);
-        // TODO: 2023/11/28 用户随机昵称
-        String account = generateAccount();
-        user.setAccount(account);
-        AccountInfo accountInfo = AccountInfo.getDefault();
-        boolean save = accountInfoService.save(accountInfo);
-        //注册失败
-        ThrowUtils.throwIf(!save, StatusCode.USER_REGISTER_FAILED);
-        user.setAccountInfoId(accountInfo.getId());
-        Exp exp = new Exp();
-        exp.setNextExp(100);
-        boolean save1 = expService.save(exp);
-        //注册失败
-        ThrowUtils.throwIf(!save1, StatusCode.USER_REGISTER_FAILED);
-        user.setExpId(exp.getId());
-        //保存数据库，完成注册
-        boolean isRegister = userDao.save(user);
-        //注册失败
-        ThrowUtils.throwIf(!isRegister, StatusCode.USER_REGISTER_FAILED);
-        return user;
-    }
 
     /**
      * 校验用户合法性，比如是否被禁用之类的
@@ -278,23 +225,10 @@ public class UserServiceImpl implements UserService {
         ThrowUtils.throwIf(Objects.equals(status, FORBID), StatusCode.ACCOUNT_FORBID);
     }
 
-    private String generateAccount() {
-        String account = null;
-        do {
-            account = "cili_" + RandomUtil.randomNumbers(12);
-        } while (userDao.getUserByAccount(account) != null);
-        return account;
+    public static void main(String[] args) {
+        char n = 1;
     }
 
-    /**
-     * 密码加密
-     *
-     * @param password
-     * @return
-     */
-    private String encryptPassword(String password,String salt) {
-        return DigestUtil.sha256Hex(password + salt);
-    }
 }
 
 
